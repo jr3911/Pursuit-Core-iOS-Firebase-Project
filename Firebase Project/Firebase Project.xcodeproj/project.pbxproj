@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0808A498238DB2800040E7FC /* CreateAccountVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0808A497238DB2800040E7FC /* CreateAccountVC.swift */; };
 		0899D5E32382F0DA0059D9CE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0899D5E22382F0DA0059D9CE /* AppDelegate.swift */; };
 		0899D5E52382F0DA0059D9CE /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0899D5E42382F0DA0059D9CE /* SceneDelegate.swift */; };
 		0899D5EC2382F0E30059D9CE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0899D5EB2382F0E30059D9CE /* Assets.xcassets */; };
@@ -20,6 +21,7 @@
 		0899D61523832F1B0059D9CE /* FeedCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0899D61423832F1B0059D9CE /* FeedCollectionViewCell.swift */; };
 		0899D6172383304F0059D9CE /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0899D6162383304F0059D9CE /* GoogleService-Info.plist */; };
 		0899D6182383304F0059D9CE /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0899D6162383304F0059D9CE /* GoogleService-Info.plist */; };
+		0899D61A23833D300059D9CE /* FirebaseAuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0899D61923833D300059D9CE /* FirebaseAuthService.swift */; };
 		3E472B7ECB46DBB6141846C1 /* Pods_Firebase_Project.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 562A935434401074183C0E18 /* Pods_Firebase_Project.framework */; };
 		DF6AE8D6C463540334B27E4E /* Pods_Firebase_ProjectTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3CBE4DE15F2EC8CD37A6C599 /* Pods_Firebase_ProjectTests.framework */; };
 /* End PBXBuildFile section */
@@ -36,6 +38,7 @@
 
 /* Begin PBXFileReference section */
 		0467B80556C0D72957E8BE08 /* Pods-Firebase Project.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Firebase Project.debug.xcconfig"; path = "Target Support Files/Pods-Firebase Project/Pods-Firebase Project.debug.xcconfig"; sourceTree = "<group>"; };
+		0808A497238DB2800040E7FC /* CreateAccountVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccountVC.swift; sourceTree = "<group>"; };
 		0899D5DF2382F0DA0059D9CE /* Firebase Project.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Firebase Project.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0899D5E22382F0DA0059D9CE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0899D5E42382F0DA0059D9CE /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -52,6 +55,7 @@
 		0899D61223832EEB0059D9CE /* ImageDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDetailVC.swift; sourceTree = "<group>"; };
 		0899D61423832F1B0059D9CE /* FeedCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedCollectionViewCell.swift; sourceTree = "<group>"; };
 		0899D6162383304F0059D9CE /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		0899D61923833D300059D9CE /* FirebaseAuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseAuthService.swift; sourceTree = "<group>"; };
 		2A7446AA91DC304C2737A2CA /* Pods-Firebase ProjectTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Firebase ProjectTests.debug.xcconfig"; path = "Target Support Files/Pods-Firebase ProjectTests/Pods-Firebase ProjectTests.debug.xcconfig"; sourceTree = "<group>"; };
 		2FC6EEF2BC5F7C0B630EB32C /* Pods-Firebase Project.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Firebase Project.release.xcconfig"; path = "Target Support Files/Pods-Firebase Project/Pods-Firebase Project.release.xcconfig"; sourceTree = "<group>"; };
 		3CBE4DE15F2EC8CD37A6C599 /* Pods_Firebase_ProjectTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Firebase_ProjectTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -105,7 +109,7 @@
 				0899D6072382F1170059D9CE /* View Controllers */,
 				0899D6062382F1130059D9CE /* Models */,
 				0899D6052382F10D0059D9CE /* Views */,
-				0899D6092382F12D0059D9CE /* API Clients */,
+				0899D6092382F12D0059D9CE /* Firebase Files */,
 				0899D6082382F1200059D9CE /* Network Files */,
 				0899D6042382F0FB0059D9CE /* Supporting Files */,
 				0899D5EB2382F0E30059D9CE /* Assets.xcassets */,
@@ -153,6 +157,7 @@
 			isa = PBXGroup;
 			children = (
 				0899D60A23832EB00059D9CE /* LoginVC.swift */,
+				0808A497238DB2800040E7FC /* CreateAccountVC.swift */,
 				0899D60C23832EBC0059D9CE /* ProfileVC.swift */,
 				0899D60E23832ECC0059D9CE /* FeedVC.swift */,
 				0899D61023832EDF0059D9CE /* ImageUploadVC.swift */,
@@ -168,11 +173,12 @@
 			path = "Network Files";
 			sourceTree = "<group>";
 		};
-		0899D6092382F12D0059D9CE /* API Clients */ = {
+		0899D6092382F12D0059D9CE /* Firebase Files */ = {
 			isa = PBXGroup;
 			children = (
+				0899D61923833D300059D9CE /* FirebaseAuthService.swift */,
 			);
-			path = "API Clients";
+			path = "Firebase Files";
 			sourceTree = "<group>";
 		};
 		0D0CF86CBF67DF550088B091 /* Pods */ = {
@@ -364,6 +370,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0899D61A23833D300059D9CE /* FirebaseAuthService.swift in Sources */,
 				0899D60F23832ECC0059D9CE /* FeedVC.swift in Sources */,
 				0899D60D23832EBC0059D9CE /* ProfileVC.swift in Sources */,
 				0899D61123832EDF0059D9CE /* ImageUploadVC.swift in Sources */,
@@ -371,6 +378,7 @@
 				0899D61523832F1B0059D9CE /* FeedCollectionViewCell.swift in Sources */,
 				0899D61323832EEB0059D9CE /* ImageDetailVC.swift in Sources */,
 				0899D60B23832EB00059D9CE /* LoginVC.swift in Sources */,
+				0808A498238DB2800040E7FC /* CreateAccountVC.swift in Sources */,
 				0899D5E52382F0DA0059D9CE /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
