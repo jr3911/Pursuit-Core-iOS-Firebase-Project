@@ -54,6 +54,7 @@ class LoginVC: UIViewController {
         button.layer.borderWidth = 2
         button.layer.borderColor = UIColor.darkGray.cgColor
         button.layer.cornerRadius = 5
+        button.addTarget(self, action: #selector(showCreateAccountPage), for: .touchUpInside)
         return button
     }()
     
@@ -65,6 +66,11 @@ class LoginVC: UIViewController {
         setUpViews()
     }
     
+    
+    //MARK: - Objective-C Functions
+    @objc func showCreateAccountPage() {
+        present(CreateAccountVC(), animated: true, completion: nil)
+    }
     
     //MARK: - Private Functions
     private func setUpViews() {
