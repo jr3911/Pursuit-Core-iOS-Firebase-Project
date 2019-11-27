@@ -12,7 +12,7 @@ class FeedVC: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .cyan
+        view.backgroundColor = .white
         // Do any additional setup after loading the view.
     }
     
