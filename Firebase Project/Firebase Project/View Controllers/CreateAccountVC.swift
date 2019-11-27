@@ -85,10 +85,31 @@ class CreateAccountVC: UIViewController {
             FirebaseAuthService.manager.createNewUser(email: email, password: password) { (result) in
                 switch result {
                 case .success:
-                    self.showAlert(title: "Welcome!", message: "Your account has been created successfully. Please log in to your new account.", autoDismiss: true)
-                    let profileVC = ProfileVC()
-                    profileVC.modalPresentationStyle = .overFullScreen
-                    self.present(profileVC, animated: true, completion: nil)
+                    if let currentUser = FirebaseAuthService.manager.currentUser {
+                        let newUser = AppUser(from: currentUser)
+                        FirestoreService.manager.createAppUser(user: newUser) { (result) in
+                            switch result {
+                            case .success:
+                                guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
+                                    let sceneDelegate = windowScene.delegate as? SceneDelegate, let window = sceneDelegate.window
+                                    else {
+                                        self.dismiss(animated: true, completion: nil)
+                                        return
+                                }
+                                UIView.transition(with: window, duration: 0.5, options: .transitionFlipFromBottom, animations: {
+                                    if FirebaseAuthService.manager.currentUser?.photoURL != nil {
+                                        window.rootViewController = PursuitstgramTabBarController()
+                                    } else {
+                                        window.rootViewController = ProfileVC()
+                                    }
+                                }, completion: { (_) in
+                                    return window.rootViewController!.showAlert(title: "Welcome!", message: "Your account has been created successfully.", autoDismiss: true)
+                                })
+                            case .failure(let error):
+                                self.showAlert(title: "Error", message: error.localizedDescription, autoDismiss: false)
+                            }
+                        }
+                    }
                 case .failure(let error):
                     self.showAlert(title: "Could not create account", message: error.localizedDescription, autoDismiss: false)
                 }

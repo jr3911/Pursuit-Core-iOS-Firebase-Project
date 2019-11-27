@@ -73,6 +73,18 @@ extension SceneDelegate {
         currentUser.getIDTokenForcingRefresh(true) { (idToken, error) in
             if let error = error {
                 print(error.localizedDescription)
+                //TODO: Fix when to remove user from database
+                //Below comment block will not work because read,write permissions are dependent on request.auth, which the user does not have if deleted from authentification
+                
+//                FirestoreService.manager.deleteUserData(userID: currentUser.uid.description) { (result) in
+//                    switch result {
+//                    case .success:
+//                        print("User was successfully removed from database")
+//                    case .failure(let error):
+//                        print("User was not removed from database\nError: \(error)")
+//                    }
+//                }
+                
                 FirebaseAuthService.manager.logoutUser()
                 completionHandler(.failure(.other(rawError: error)))
             } else {
