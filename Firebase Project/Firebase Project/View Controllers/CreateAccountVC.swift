@@ -28,22 +28,21 @@ class CreateAccountVC: UIViewController {
         return sv
     }()
     
-    lazy var displayNameTextField: UITextField = {
-        let tf = UITextField()
-        tf.borderStyle = .roundedRect
-        tf.placeholder = "Display Name"
-        return tf
-    }()
-    
     lazy var emailAddressTextField: UITextField = {
         let tf = UITextField()
+        tf.delegate = self
+        tf.textContentType = .emailAddress
         tf.borderStyle = .roundedRect
         tf.placeholder = "Email Address"
+        tf.autocorrectionType = .no
+        tf.autocapitalizationType = .none
         return tf
     }()
     
     lazy var passwordTextField: UITextField = {
         let tf = UITextField()
+        tf.delegate = self
+        tf.textContentType = .newPassword
         tf.isSecureTextEntry = true
         tf.borderStyle = .roundedRect
         tf.placeholder = "Password"
@@ -61,6 +60,7 @@ class CreateAccountVC: UIViewController {
     
     lazy var closeButton: UIButton = {
         let button = UIButton(type: UIButton.ButtonType.close)
+        button.backgroundColor = .clear
         button.addTarget(self, action: #selector(closePage), for: .touchUpInside)
         return button
     }()
@@ -76,10 +76,24 @@ class CreateAccountVC: UIViewController {
     
     //MARK: - Objective-C Methods
     @objc func createAccount() {
-        if let email = emailAddressTextField.text, let displayName = displayNameTextField.text, let password = passwordTextField.text {
-            
+        guard emailAddressTextField.hasText, passwordTextField.hasText else {
+            showAlert(title: "Unable to create account", message: "All fields must be filled", autoDismiss: false)
+            return
         }
-        dismiss(animated: true, completion: nil)
+        
+        if let email = emailAddressTextField.text, let password = passwordTextField.text {
+            FirebaseAuthService.manager.createNewUser(email: email, password: password) { (result) in
+                switch result {
+                case .success:
+                    self.showAlert(title: "Welcome!", message: "Your account has been created successfully. Please log in to your new account.", autoDismiss: true)
+                    let profileVC = ProfileVC()
+                    profileVC.modalPresentationStyle = .overFullScreen
+                    self.present(profileVC, animated: true, completion: nil)
+                case .failure(let error):
+                    self.showAlert(title: "Could not create account", message: error.localizedDescription, autoDismiss: false)
+                }
+            }
+        }
     }
     
     @objc func closePage() {
@@ -92,24 +106,18 @@ class CreateAccountVC: UIViewController {
         view.addSubview(pageTitleLabel)
         view.addSubview(textFieldStackView)
         
-        textFieldStackView.addArrangedSubview(displayNameTextField)
         textFieldStackView.addArrangedSubview(emailAddressTextField)
         textFieldStackView.addArrangedSubview(passwordTextField)
-        
-//        view.addSubview(displayNameTextField)
-//        view.addSubview(emailAddressTextField)
-//        view.addSubview(passwordTextField)
         
         view.addSubview(submitButton)
         view.addSubview(closeButton)
     }
     
+    
+    //MARK: - Constraints
     private func constrainSubviews() {
         pageTitleLabel.translatesAutoresizingMaskIntoConstraints = false
         textFieldStackView.translatesAutoresizingMaskIntoConstraints = false
-//        displayNameTextField.translatesAutoresizingMaskIntoConstraints = false
-//        emailAddressTextField.translatesAutoresizingMaskIntoConstraints = false
-//        passwordTextField.translatesAutoresizingMaskIntoConstraints = false
         submitButton.translatesAutoresizingMaskIntoConstraints = false
         closeButton.translatesAutoresizingMaskIntoConstraints = false
         
@@ -119,12 +127,12 @@ class CreateAccountVC: UIViewController {
             pageTitleLabel.heightAnchor.constraint(equalToConstant: 100),
             pageTitleLabel.widthAnchor.constraint(equalTo: view.safeAreaLayoutGuide.widthAnchor)
         ])
-
+        
         
         NSLayoutConstraint.activate([
-            textFieldStackView.topAnchor.constraint(equalTo: pageTitleLabel.bottomAnchor, constant: 50),
+            textFieldStackView.centerYAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerYAnchor),
             textFieldStackView.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
-            textFieldStackView.heightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.heightAnchor, multiplier: 0.25),
+            textFieldStackView.heightAnchor.constraint(equalToConstant: 100),
             textFieldStackView.widthAnchor.constraint(equalTo: view.safeAreaLayoutGuide.widthAnchor, multiplier: 0.7)
         ])
         
