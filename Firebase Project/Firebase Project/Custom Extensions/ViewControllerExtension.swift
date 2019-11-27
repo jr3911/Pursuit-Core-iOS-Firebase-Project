@@ -15,6 +15,7 @@ extension UIViewController {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         if autoDismiss {
             present(alert, animated: true) {
+                sleep(1)
                 alert.dismiss(animated: true, completion: nil)
             }
         } else {
