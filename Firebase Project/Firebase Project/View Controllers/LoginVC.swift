@@ -87,21 +87,12 @@ class LoginVC: UIViewController {
             FirebaseAuthService.manager.loginUser(email: email, password: password) { (result) in
                 switch result {
                 case .success:
-                    
-                    let tabVC = UITabBarController()
-                    let feedVC = FeedVC()
-                    let imageUploadVC = ImageUploadVC()
-                    let profileVC = ProfileVC()
-                    
-                    feedVC.tabBarItem = UITabBarItem(title: "Feed", image: UIImage(systemName: "photo.fill.on.rectangle.fill"), tag: 0)
-                    imageUploadVC.tabBarItem = UITabBarItem(title: "Upload", image: UIImage(systemName: "camera.fill"), tag: 1)
-                    profileVC.tabBarItem = UITabBarItem(title: "Profile", image: UIImage(systemName: "person.circle.fill"), tag: 2)
-                    
-                    tabVC.viewControllers = [feedVC, imageUploadVC, profileVC]
-                    
+                    let tabVC = PursuitstgramTabBarController()
                     tabVC.modalPresentationStyle = .overFullScreen
                     self.present(tabVC, animated: true, completion: nil)
+                    
                 case .failure(let error):
+                    self.showAlert(title: "Unable to log in", message: "\(error)", autoDismiss: false)
                     print(error)
                 }
             }
