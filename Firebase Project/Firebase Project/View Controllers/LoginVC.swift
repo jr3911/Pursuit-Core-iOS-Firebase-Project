@@ -20,18 +20,22 @@ class LoginVC: UIViewController {
     
     lazy var emailTextField: UITextField = {
         let tf = UITextField()
+        tf.delegate = self
+        tf.textContentType = .emailAddress
+        tf.borderStyle = .roundedRect
         tf.placeholder = "Email Address"
-        tf.borderStyle = .bezel
         tf.autocorrectionType = .no
+        tf.autocapitalizationType = .none
         return tf
     }()
     
     lazy var passwordTextField: UITextField = {
         let tf = UITextField()
-        tf.placeholder = "Password"
-        tf.borderStyle = .bezel
-        tf.autocorrectionType = .no
+        tf.delegate = self
+        tf.textContentType = .password
         tf.isSecureTextEntry = true
+        tf.borderStyle = .roundedRect
+        tf.placeholder = "Password"
         return tf
     }()
     
@@ -43,6 +47,7 @@ class LoginVC: UIViewController {
         button.layer.borderWidth = 2
         button.layer.borderColor = UIColor.darkGray.cgColor
         button.layer.cornerRadius = 5
+        button.addTarget(self, action: #selector(handleLogin), for: .touchUpInside)
         return button
     }()
     
