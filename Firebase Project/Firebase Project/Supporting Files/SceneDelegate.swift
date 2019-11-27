@@ -24,20 +24,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         checkIfUserStillValid { (result) in
             switch result {
             case .success:
-                
-                let tabVC = UITabBarController()
-                let feedVC = FeedVC()
-                let imageUploadVC = ImageUploadVC()
-                let profileVC = ProfileVC()
-                
-                feedVC.tabBarItem = UITabBarItem(title: "Feed", image: UIImage(systemName: "photo.fill.on.rectangle.fill"), tag: 0)
-                imageUploadVC.tabBarItem = UITabBarItem(title: "Upload", image: UIImage(systemName: "camera.fill"), tag: 1)
-                profileVC.tabBarItem = UITabBarItem(title: "Profile", image: UIImage(systemName: "person.circle.fill"), tag: 2)
-                
-                tabVC.viewControllers = [feedVC, imageUploadVC, profileVC]
-                
-                self.window?.rootViewController = tabVC
-                
+                self.window?.rootViewController = PursuitstgramTabBarController()
             case .failure:
                 self.window?.rootViewController = LoginVC()
             }
