@@ -77,6 +77,37 @@ class LoginVC: UIViewController {
         present(CreateAccountVC(), animated: true, completion: nil)
     }
     
+    @objc func handleLogin() {
+        guard emailTextField.hasText, passwordTextField.hasText else {
+            showAlert(title: "Unable to log in", message: "All fields must be filled", autoDismiss: false)
+            return
+        }
+        
+        if let email = emailTextField.text, let password = passwordTextField.text {
+            FirebaseAuthService.manager.loginUser(email: email, password: password) { (result) in
+                switch result {
+                case .success:
+                    
+                    let tabVC = UITabBarController()
+                    let feedVC = FeedVC()
+                    let imageUploadVC = ImageUploadVC()
+                    let profileVC = ProfileVC()
+                    
+                    feedVC.tabBarItem = UITabBarItem(title: "Feed", image: UIImage(systemName: "photo.fill.on.rectangle.fill"), tag: 0)
+                    imageUploadVC.tabBarItem = UITabBarItem(title: "Upload", image: UIImage(systemName: "camera.fill"), tag: 1)
+                    profileVC.tabBarItem = UITabBarItem(title: "Profile", image: UIImage(systemName: "person.circle.fill"), tag: 2)
+                    
+                    tabVC.viewControllers = [feedVC, imageUploadVC, profileVC]
+                    
+                    tabVC.modalPresentationStyle = .overFullScreen
+                    self.present(tabVC, animated: true, completion: nil)
+                case .failure(let error):
+                    print(error)
+                }
+            }
+        }
+    }
+    
     //MARK: - Private Functions
     private func setUpViews() {
         view.addSubview(appTitleLabel)
@@ -144,4 +175,13 @@ class LoginVC: UIViewController {
         ])
     }
     
+}
+
+
+//MARK: - TextField Methods
+extension LoginVC: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
 }
