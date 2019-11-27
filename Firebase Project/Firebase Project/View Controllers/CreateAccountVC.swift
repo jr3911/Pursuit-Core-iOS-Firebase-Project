@@ -152,5 +152,13 @@ class CreateAccountVC: UIViewController {
         
     }
     
+}
 
+
+//MARK: - TextField Methods
+extension CreateAccountVC: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
 }
