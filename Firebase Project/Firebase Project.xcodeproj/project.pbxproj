@@ -22,6 +22,8 @@
 		0899D6172383304F0059D9CE /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0899D6162383304F0059D9CE /* GoogleService-Info.plist */; };
 		0899D6182383304F0059D9CE /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0899D6162383304F0059D9CE /* GoogleService-Info.plist */; };
 		0899D61A23833D300059D9CE /* FirebaseAuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0899D61923833D300059D9CE /* FirebaseAuthService.swift */; };
+		08EFCE61238E1844008B1D40 /* ViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08EFCE60238E1844008B1D40 /* ViewControllerExtension.swift */; };
+		08EFCE63238E299F008B1D40 /* AppError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08EFCE62238E299F008B1D40 /* AppError.swift */; };
 		3E472B7ECB46DBB6141846C1 /* Pods_Firebase_Project.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 562A935434401074183C0E18 /* Pods_Firebase_Project.framework */; };
 		DF6AE8D6C463540334B27E4E /* Pods_Firebase_ProjectTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3CBE4DE15F2EC8CD37A6C599 /* Pods_Firebase_ProjectTests.framework */; };
 /* End PBXBuildFile section */
@@ -56,6 +58,8 @@
 		0899D61423832F1B0059D9CE /* FeedCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedCollectionViewCell.swift; sourceTree = "<group>"; };
 		0899D6162383304F0059D9CE /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		0899D61923833D300059D9CE /* FirebaseAuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseAuthService.swift; sourceTree = "<group>"; };
+		08EFCE60238E1844008B1D40 /* ViewControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerExtension.swift; sourceTree = "<group>"; };
+		08EFCE62238E299F008B1D40 /* AppError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppError.swift; sourceTree = "<group>"; };
 		2A7446AA91DC304C2737A2CA /* Pods-Firebase ProjectTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Firebase ProjectTests.debug.xcconfig"; path = "Target Support Files/Pods-Firebase ProjectTests/Pods-Firebase ProjectTests.debug.xcconfig"; sourceTree = "<group>"; };
 		2FC6EEF2BC5F7C0B630EB32C /* Pods-Firebase Project.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Firebase Project.release.xcconfig"; path = "Target Support Files/Pods-Firebase Project/Pods-Firebase Project.release.xcconfig"; sourceTree = "<group>"; };
 		3CBE4DE15F2EC8CD37A6C599 /* Pods_Firebase_ProjectTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Firebase_ProjectTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -106,6 +110,7 @@
 		0899D5E12382F0DA0059D9CE /* Firebase Project */ = {
 			isa = PBXGroup;
 			children = (
+				08EFCE5F238E181F008B1D40 /* Custom Extensions */,
 				0899D6072382F1170059D9CE /* View Controllers */,
 				0899D6062382F1130059D9CE /* Models */,
 				0899D6052382F10D0059D9CE /* Views */,
@@ -149,6 +154,7 @@
 		0899D6062382F1130059D9CE /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				08EFCE62238E299F008B1D40 /* AppError.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -179,6 +185,14 @@
 				0899D61923833D300059D9CE /* FirebaseAuthService.swift */,
 			);
 			path = "Firebase Files";
+			sourceTree = "<group>";
+		};
+		08EFCE5F238E181F008B1D40 /* Custom Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				08EFCE60238E1844008B1D40 /* ViewControllerExtension.swift */,
+			);
+			path = "Custom Extensions";
 			sourceTree = "<group>";
 		};
 		0D0CF86CBF67DF550088B091 /* Pods */ = {
@@ -372,11 +386,13 @@
 			files = (
 				0899D61A23833D300059D9CE /* FirebaseAuthService.swift in Sources */,
 				0899D60F23832ECC0059D9CE /* FeedVC.swift in Sources */,
+				08EFCE61238E1844008B1D40 /* ViewControllerExtension.swift in Sources */,
 				0899D60D23832EBC0059D9CE /* ProfileVC.swift in Sources */,
 				0899D61123832EDF0059D9CE /* ImageUploadVC.swift in Sources */,
 				0899D5E32382F0DA0059D9CE /* AppDelegate.swift in Sources */,
 				0899D61523832F1B0059D9CE /* FeedCollectionViewCell.swift in Sources */,
 				0899D61323832EEB0059D9CE /* ImageDetailVC.swift in Sources */,
+				08EFCE63238E299F008B1D40 /* AppError.swift in Sources */,
 				0899D60B23832EB00059D9CE /* LoginVC.swift in Sources */,
 				0808A498238DB2800040E7FC /* CreateAccountVC.swift in Sources */,
 				0899D5E52382F0DA0059D9CE /* SceneDelegate.swift in Sources */,
