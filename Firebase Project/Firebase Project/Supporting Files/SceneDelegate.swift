@@ -21,7 +21,28 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         window = UIWindow(windowScene: scene)
         
-        window?.rootViewController = LoginVC()
+        checkIfUserStillValid { (result) in
+            switch result {
+            case .success:
+                
+                let tabVC = UITabBarController()
+                let feedVC = FeedVC()
+                let imageUploadVC = ImageUploadVC()
+                let profileVC = ProfileVC()
+                
+                feedVC.tabBarItem = UITabBarItem(title: "Feed", image: UIImage(systemName: "photo.fill.on.rectangle.fill"), tag: 0)
+                imageUploadVC.tabBarItem = UITabBarItem(title: "Upload", image: UIImage(systemName: "camera.fill"), tag: 1)
+                profileVC.tabBarItem = UITabBarItem(title: "Profile", image: UIImage(systemName: "person.circle.fill"), tag: 2)
+                
+                tabVC.viewControllers = [feedVC, imageUploadVC, profileVC]
+                
+                self.window?.rootViewController = tabVC
+                
+            case .failure:
+                self.window?.rootViewController = LoginVC()
+            }
+        }
+        
         window?.makeKeyAndVisible()
     }
 
@@ -54,5 +75,23 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
 
 
+}
+
+extension SceneDelegate {
+    func checkIfUserStillValid(completionHandler: @escaping (Result<Bool, AppError>) -> () ) {
+        guard let currentUser = FirebaseAuthService.manager.currentUser else {
+            completionHandler(.failure(.noCurrentUser))
+            return
+        }
+        currentUser.getIDTokenForcingRefresh(true) { (idToken, error) in
+            if let error = error {
+                print(error.localizedDescription)
+                FirebaseAuthService.manager.logoutUser()
+                completionHandler(.failure(.other(rawError: error)))
+            } else {
+                completionHandler(.success(true))
+            }
+        }
+    }
 }
 
