@@ -8,23 +8,17 @@
 
 import UIKit
 
-class PursuitstagramTabBarController: UITabBarController {
-
+class PursuitstgramTabBarController: UITabBarController {
+    //MARK: View Controllers
+    lazy var feedVC = UINavigationController(rootViewController: FeedVC())
+    lazy var uploadVC = UINavigationController(rootViewController: ImageUploadVC())
+    lazy var profileVC: UINavigationController = UINavigationController(rootViewController: ProfileVC())
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        feedVC.tabBarItem = UITabBarItem(title: "Feed", image: UIImage(systemName: "photo.fill.on.rectangle.fill"), tag: 0)
+        uploadVC.tabBarItem = UITabBarItem(title: "Upload", image: UIImage(systemName: "camera.fill"), tag: 1)
+        profileVC.tabBarItem = UITabBarItem(title: "Profile", image: UIImage(systemName: "person.circle.fill"), tag: 2)
+        self.viewControllers = [feedVC, uploadVC, profileVC]
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
