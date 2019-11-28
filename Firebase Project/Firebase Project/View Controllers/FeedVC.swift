@@ -55,7 +55,7 @@ class FeedVC: UIViewController {
         view.backgroundColor = .white
         addSubviews()
         loadUploadedPosts()
-        self.title = "FEED"
+        self.title = "Feed"
     }
     
     //MARK: - Private Functions

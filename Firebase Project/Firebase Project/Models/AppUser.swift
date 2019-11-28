@@ -28,7 +28,6 @@ struct AppUser {
     init?(from dict: [String: Any], id: String) {
         guard let displayName = dict["displayName"] as? String,
             let email = dict["email"] as? String,
-            let photoURL = dict["photoURL"] as? String,
             //MARK: TODO - extend Date to convert from Timestamp?
             let dateCreated = (dict["dateCreated"] as? Timestamp)?.dateValue() else { return nil }
         
@@ -36,12 +35,17 @@ struct AppUser {
         self.email = email
         self.uid = id
         self.dateCreated = dateCreated
-        self.photoURL = photoURL
+        
+        var optionalPhotoURL: String = ""
+        if let photoURL = dict["photoURL"] as? String {
+            optionalPhotoURL = photoURL
+        }
+        self.photoURL = optionalPhotoURL
     }
     
     var fieldsDict: [String: Any] {
         return [
-            "userName": self.displayName ?? "",
+            "displayName": self.displayName ?? "",
             "email": self.email ?? "",
             "dateCreated": self.dateCreated ?? ""
         ]
