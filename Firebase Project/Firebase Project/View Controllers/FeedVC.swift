@@ -46,6 +46,8 @@ class FeedVC: UIViewController {
         }
     }
     
+    var delegate: ProfileVC?
+    
     
     //MARK: - LifeCycle Methods
     override func viewDidLoad() {
@@ -62,6 +64,7 @@ class FeedVC: UIViewController {
             switch result {
             case .success(let retrievedPosts):
                 self.uploadedPosts = retrievedPosts
+                self.delegate?.updateNumUsersPosts(num: retrievedPosts.filter { $0.creatorID == FirebaseAuthService.manager.currentUser?.uid }.count )
             case .failure(let error):
                 print(error)
             }

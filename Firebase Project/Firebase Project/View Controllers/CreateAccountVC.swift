@@ -97,7 +97,7 @@ class CreateAccountVC: UIViewController {
                                         return
                                 }
                                 UIView.transition(with: window, duration: 0.5, options: .transitionFlipFromBottom, animations: {
-                                    if FirebaseAuthService.manager.currentUser?.photoURL != nil {
+                                    if FirebaseAuthService.manager.currentUser?.email != nil {
                                         window.rootViewController = PursuitstgramTabBarController()
                                     } else {
                                         window.rootViewController = ProfileVC()

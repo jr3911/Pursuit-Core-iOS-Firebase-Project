@@ -8,7 +8,13 @@
 
 import UIKit
 
-class ProfileVC: UIViewController {
+class ProfileVC: UIViewController, ListenerObserver {
+    //MARK: - Protocol Delegate
+    func updateNumUsersPosts(num: Int) {
+        self.numUserSubmissionsLabel.text = "You have submitted \(num) images"
+    }
+    
+    
     //MARK: - UI Objects
     lazy var profileLabel: UILabel = {
         let label = UILabel()
@@ -69,18 +75,23 @@ class ProfileVC: UIViewController {
     
     lazy var numUserSubmissionsLabel: UILabel = {
         let label = UILabel()
-        //TODO: Replace text with number of user submissions
-        label.text = "You have submitted __ images"
         return label
     }()
     
+    
     //MARK: - Properties
+    var usersPosts: [Post] = [] {
+        didSet {
+            numUserSubmissionsLabel.text = "You have submitted \(self.usersPosts.count) images"
+        }
+    }
     
     
     //MARK: - LifeCycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(logout))
         addSubview()
     }
     

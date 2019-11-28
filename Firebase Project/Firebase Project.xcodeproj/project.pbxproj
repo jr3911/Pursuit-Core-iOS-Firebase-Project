@@ -31,6 +31,7 @@
 		08EFCE69238EBEBF008B1D40 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08EFCE68238EBEBF008B1D40 /* Post.swift */; };
 		08EFCE6B238EF4CD008B1D40 /* FirebaseStorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08EFCE6A238EF4CD008B1D40 /* FirebaseStorageService.swift */; };
 		08EFCE6D238EFA35008B1D40 /* PursuitstgramTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08EFCE6C238EFA35008B1D40 /* PursuitstgramTabBarController.swift */; };
+		08FF9D9D238F4EBE003A5CD3 /* ListenerObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08FF9D9C238F4EBE003A5CD3 /* ListenerObserver.swift */; };
 		3E472B7ECB46DBB6141846C1 /* Pods_Firebase_Project.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 562A935434401074183C0E18 /* Pods_Firebase_Project.framework */; };
 		DF6AE8D6C463540334B27E4E /* Pods_Firebase_ProjectTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3CBE4DE15F2EC8CD37A6C599 /* Pods_Firebase_ProjectTests.framework */; };
 /* End PBXBuildFile section */
@@ -74,6 +75,7 @@
 		08EFCE68238EBEBF008B1D40 /* Post.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		08EFCE6A238EF4CD008B1D40 /* FirebaseStorageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseStorageService.swift; sourceTree = "<group>"; };
 		08EFCE6C238EFA35008B1D40 /* PursuitstgramTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PursuitstgramTabBarController.swift; sourceTree = "<group>"; };
+		08FF9D9C238F4EBE003A5CD3 /* ListenerObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListenerObserver.swift; sourceTree = "<group>"; };
 		2A7446AA91DC304C2737A2CA /* Pods-Firebase ProjectTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Firebase ProjectTests.debug.xcconfig"; path = "Target Support Files/Pods-Firebase ProjectTests/Pods-Firebase ProjectTests.debug.xcconfig"; sourceTree = "<group>"; };
 		2FC6EEF2BC5F7C0B630EB32C /* Pods-Firebase Project.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Firebase Project.release.xcconfig"; path = "Target Support Files/Pods-Firebase Project/Pods-Firebase Project.release.xcconfig"; sourceTree = "<group>"; };
 		3CBE4DE15F2EC8CD37A6C599 /* Pods_Firebase_ProjectTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Firebase_ProjectTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -124,6 +126,7 @@
 		0899D5E12382F0DA0059D9CE /* Firebase Project */ = {
 			isa = PBXGroup;
 			children = (
+				08FF9D9B238F4E9D003A5CD3 /* Protocols */,
 				08EFCE5F238E181F008B1D40 /* Custom Extensions */,
 				0899D6072382F1170059D9CE /* View Controllers */,
 				0899D6062382F1130059D9CE /* Models */,
@@ -214,6 +217,14 @@
 				08EFCE60238E1844008B1D40 /* ViewControllerExtension.swift */,
 			);
 			path = "Custom Extensions";
+			sourceTree = "<group>";
+		};
+		08FF9D9B238F4E9D003A5CD3 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				08FF9D9C238F4EBE003A5CD3 /* ListenerObserver.swift */,
+			);
+			path = Protocols;
 			sourceTree = "<group>";
 		};
 		0D0CF86CBF67DF550088B091 /* Pods */ = {
@@ -420,6 +431,7 @@
 				08EFCE63238E299F008B1D40 /* AppError.swift in Sources */,
 				08EFCE6D238EFA35008B1D40 /* PursuitstgramTabBarController.swift in Sources */,
 				0899D60B23832EB00059D9CE /* LoginVC.swift in Sources */,
+				08FF9D9D238F4EBE003A5CD3 /* ListenerObserver.swift in Sources */,
 				0808A498238DB2800040E7FC /* CreateAccountVC.swift in Sources */,
 				08EFCE65238E4578008B1D40 /* FirestoreService.swift in Sources */,
 				08EFCE6B238EF4CD008B1D40 /* FirebaseStorageService.swift in Sources */,
