@@ -25,11 +25,11 @@ struct Post {
     }
     
     init?(from dict: [String: Any], id: String) {
-        guard let title = dict["title"] as? String,
-            let imageURL = dict["imageURL"] as? String,
-            let userID = dict["creatorID"] as? String,
-            let dateCreated = (dict["dateCreated"] as? Timestamp)?.dateValue() else { return nil }
+        guard let imageURL = dict["imageURL"] as? String,
+              let userID = dict["creatorID"] as? String,
+              let dateCreated = (dict["dateCreated"] as? Timestamp)?.dateValue() else { return nil }
         
+        let title = dict["title"] as? String ?? "Image"
         self.title = title
         self.imageURL = imageURL
         self.creatorID = userID
