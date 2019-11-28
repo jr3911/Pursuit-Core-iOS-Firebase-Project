@@ -51,8 +51,17 @@ class ImageDetailVC: UIViewController {
     
     var selectedPost: Post? {
         didSet {
-            self.submitterLabel.text = "Submitted by: \(self.selectedPost?.creatorID.description ?? "N/A")"
+//            self.submitterLabel.text = "Submitted by: \(self.selectedPost?.creatorID.description ?? "N/A")"
             self.dateCreatedLabel.text = "Created on: \(self.selectedPost?.dateCreated?.description ?? "N/A")"
+            
+            FirestoreService.manager.getUser(userID: self.selectedPost?.creatorID.description ?? "N/A") { (result) in
+                switch result {
+                case .success(let submitter):
+                    self.submitterLabel.text = "Submitted by: \(submitter.displayName ?? "N/A")"
+                case .failure(let error):
+                    print(error)
+                }
+            }
         }
     }
     
