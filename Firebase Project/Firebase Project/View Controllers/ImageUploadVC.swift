@@ -34,6 +34,7 @@ class ImageUploadVC: UIViewController {
         button.setTitle("Upload", for: .normal)
         button.titleLabel?.adjustsFontSizeToFitWidth = true
         button.addTarget(self, action: #selector(uploadImage), for: .touchUpInside)
+        button.isEnabled = false
         return button
     }()
     
@@ -58,11 +59,13 @@ class ImageUploadVC: UIViewController {
             switch result {
             case .success(let imageURL):
                 let creatorID = FirebaseAuthService.manager.currentUser?.uid
-                FirestoreService.manager.createPost(post: Post(title: nil, imageURL: imageURL.absoluteString, creatorID: creatorID!, dateCreated: Date())) { (result) in
+                FirestoreService.manager.createPost(post: Post(title:
+                    "Image", imageURL: imageURL.absoluteString, creatorID: creatorID!, dateCreated: Date())) { (result) in
                     switch result {
                     case .success:
                         self.showAlert(title: "Success!", message: "Your image was successfully uploaded", autoDismiss: true)
                         self.imageButton.setBackgroundImage(UIImage(systemName: "camera.fill"), for: .normal)
+                        self.uploadButton.isEnabled = false
                     case .failure(let error):
                         self.showAlert(title: "Error", message: "Could not create a post\nError: \(error.localizedDescription)", autoDismiss: false)
                     }
@@ -123,6 +126,7 @@ extension ImageUploadVC: UIImagePickerControllerDelegate, UINavigationController
         }
         
         self.imageButton.setBackgroundImage(image, for: .normal)
+        self.uploadButton.isEnabled = true
         dismiss(animated: true, completion: nil)
     }
 }
