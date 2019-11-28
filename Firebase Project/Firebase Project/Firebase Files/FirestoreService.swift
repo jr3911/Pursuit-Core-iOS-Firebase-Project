@@ -82,6 +82,20 @@ class FirestoreService {
         }
     }
     
+    func getUser(userID: String, completion: @escaping (Result<AppUser, Error>) -> () ) {
+        let specificUserDocumentReference = db.document("\(FireStoreCollections.users.rawValue)/\(userID)")
+        specificUserDocumentReference.getDocument { (snapshot, error) in
+            if let error = error {
+                completion(.failure(error))
+            } else {
+                guard let userID = snapshot?.documentID else { completion(.failure(AppError.noSnapshotDocumentID)); return }
+                guard let snapshotData = snapshot?.data() else { completion(.failure(AppError.noSnapshotData)); return }
+                guard let user = AppUser(from: snapshotData, id: userID) else { completion(.failure(AppError.noUser)); return }
+                completion(.success(user))
+            }
+        }
+    }
+    
     func deleteUserData(userID: String, completion: @escaping (Result<(), Error>) -> () ) {
         db.collection(FireStoreCollections.users.rawValue).document(userID).delete() { (error) in
             if let error = error {
