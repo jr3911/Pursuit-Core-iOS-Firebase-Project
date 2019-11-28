@@ -10,6 +10,9 @@ import Foundation
 
 enum AppError: Error {
     case noCurrentUser
+    case noUser
+    case noSnapshotData
+    case noSnapshotDocumentID
     case other(rawError: Error)
     case unauthenticated
     case invalidJSONResponse
