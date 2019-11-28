@@ -110,6 +110,23 @@ class ProfileVC: UIViewController, ListenerObserver {
         }
     }
     
+    @objc func logout() {
+        FirebaseAuthService.manager.logoutUser()
+        guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
+            let sceneDelegate = windowScene.delegate as? SceneDelegate, let window = sceneDelegate.window
+            else {
+                self.dismiss(animated: true, completion: nil)
+                return
+        }
+        UIView.transition(with: window, duration: 0.5, options: .transitionFlipFromBottom, animations: {
+            if FirebaseAuthService.manager.currentUser == nil {
+                window.rootViewController = LoginVC()
+            } else {
+                self.dismiss(animated: true, completion: nil)
+            }
+        })
+    }
+    
     //MARK: - Private Functions
     private func addSubview() {
         view.addSubview(profileLabel)
