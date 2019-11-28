@@ -19,6 +19,9 @@ class PursuitstgramTabBarController: UITabBarController {
         feedVC.tabBarItem = UITabBarItem(title: "Feed", image: UIImage(systemName: "photo.fill.on.rectangle.fill"), tag: 0)
         uploadVC.tabBarItem = UITabBarItem(title: "Upload", image: UIImage(systemName: "camera.fill"), tag: 1)
         profileVC.tabBarItem = UITabBarItem(title: "Profile", image: UIImage(systemName: "person.circle.fill"), tag: 2)
+        if let rootFeedVC = feedVC.viewControllers[0] as? FeedVC, let rootProfileVC = profileVC.viewControllers[0] as? ProfileVC {
+            rootFeedVC.delegate = rootProfileVC
+        }
         self.viewControllers = [feedVC, uploadVC, profileVC]
     }
 }
