@@ -113,9 +113,20 @@ extension FeedVC: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource
             }
         }
         
-        
         return cell
     }
     
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        let selectedPost = uploadedPosts[indexPath.row]
+        let selectedCell = collectionView.cellForItem(at: indexPath) as! FeedCollectionViewCell
+        
+        let imageDetailVC = ImageDetailVC()
+        imageDetailVC.selectedPost = selectedPost
+        imageDetailVC.selectedImage = selectedCell.imageView.image
+        
+        navigationController?.pushViewController(imageDetailVC, animated: true)
+        
+    }
     
 }
