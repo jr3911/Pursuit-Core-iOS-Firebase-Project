@@ -119,11 +119,13 @@ extension FeedVC: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
         let selectedPost = uploadedPosts[indexPath.row]
-        let selectedCell = collectionView.cellForItem(at: indexPath) as! FeedCollectionViewCell
+        let selectedImage = (collectionView.cellForItem(at: indexPath) as! FeedCollectionViewCell).imageView.image
+        
+        guard selectedImage != UIImage(systemName: "photo.fill") else {return}
         
         let imageDetailVC = ImageDetailVC()
         imageDetailVC.selectedPost = selectedPost
-        imageDetailVC.selectedImage = selectedCell.imageView.image
+        imageDetailVC.selectedImage = selectedImage
         
         navigationController?.pushViewController(imageDetailVC, animated: true)
         
