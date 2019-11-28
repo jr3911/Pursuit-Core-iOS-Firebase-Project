@@ -55,7 +55,7 @@ class FirestoreService {
             updateFields["photoURL"] = photo.absoluteString
         }
         
-       
+        
         //PUT request
         db.collection(FireStoreCollections.users.rawValue).document(userId).updateData(updateFields) { (error) in
             if let error = error {
@@ -104,9 +104,10 @@ class FirestoreService {
             }
         }
     }
-
-    func getAllPosts(sortingCriteria: SortingCriteria? = nil, completion: @escaping (Result<[Post], Error>) -> ()) {
-        let completionHandler: FIRQuerySnapshotBlock = {(snapshot, error) in
+    
+    func getAllPosts(sortingCriteria: SortingCriteria?, completion: @escaping (Result<[Post], Error>) -> ()) {
+        let completionHandler: FIRQuerySnapshotBlock = {
+            (snapshot, error) in
             if let error = error {
                 completion(.failure(error))
             } else {
@@ -118,19 +119,9 @@ class FirestoreService {
                 completion(.success(posts ?? []))
             }
         }
-
-        //type: Collection Reference
-        let collection = db.collection(FireStoreCollections.posts.rawValue)
-        //If i want to sort, or even to filter my collection, it's going to work with an instance of a different type - FIRQuery
-        //collection + sort/filter settings.getDocuments
-        if let sortingCriteria = sortingCriteria {
-            let query = collection.order(by:sortingCriteria.rawValue, descending: sortingCriteria.shouldSortDescending)
-            query.getDocuments(completion: completionHandler)
-        } else {
-            collection.getDocuments(completion: completionHandler)
-        }
+        db.collection(FireStoreCollections.posts.rawValue).order(by: sortingCriteria?.rawValue ?? "dateCreated", descending: sortingCriteria?.shouldSortDescending ?? true).addSnapshotListener(completionHandler)
     }
-
+    
     func getPosts(forUserID: String, completion: @escaping (Result<[Post], Error>) -> ()) {
         db.collection(FireStoreCollections.posts.rawValue).whereField("creatorID", isEqualTo: forUserID).getDocuments { (snapshot, error) in
             if let error = error {
@@ -144,7 +135,7 @@ class FirestoreService {
                 completion(.success(posts ?? []))
             }
         }
-
+        
     }
     
     private init () {}
